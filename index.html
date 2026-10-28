@@ -2,25 +2,24 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SJG DMS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="./css/style.css">
+<title>SJG DMS</title>
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="./css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <!-- =========================
-         LEFT MENU
-    ========================== -->
+    <!-- SIDEBAR -->
+
     <aside class="sidebar">
 
         <div class="logo">
@@ -28,23 +27,34 @@
         </div>
 
         <ul class="menu">
+
             <li class="active">통합 모니터링</li>
-            <li id="menuUpload">데이터 업로드</li>
+
+            <li id="menuUpload">
+                데이터 업로드
+            </li>
+
             <li>생산관리</li>
+
             <li>자재관리</li>
+
             <li>물류관리</li>
+
             <li>고객사 현황</li>
-            <li id="menuAi">AI 분석센터</li>
+
+            <li>AI 분석센터</li>
+
             <li>특이사항</li>
+
             <li>보고서</li>
+
             <li>설정</li>
+
         </ul>
 
     </aside>
 
-    <!-- =========================
-         MAIN CONTENT
-    ========================== -->
+    <!-- CONTENT -->
 
     <main class="content">
 
@@ -63,11 +73,156 @@
             </div>
 
             <div id="lastUpdate">
-                최종 업데이트 : 2026.10.31 08:00
+
+                최종 업데이트 :
+                2026.10.31 08:00
+
             </div>
 
         </div>
 
         <!-- KPI -->
 
-      
+        <div class="kpi-row">
+
+            <div class="kpi-card">
+                <h4>고객사 계획수량</h4>
+                <h2>125,430</h2>
+            </div>
+
+            <div class="kpi-card">
+                <h4>생산 계획수량</h4>
+                <h2>118,000</h2>
+            </div>
+
+            <div class="kpi-card">
+                <h4>자재 소요량</h4>
+                <h2>991</h2>
+            </div>
+
+            <div class="kpi-card">
+                <h4>출하 계획수량</h4>
+                <h2>115,600</h2>
+            </div>
+
+            <div class="kpi-card issue">
+                <h4>특이사항</h4>
+                <h2>5건</h2>
+                <div>
+                    생산2 · 자재1 · 물류2
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 데이터 업로드 -->
+
+        <section class="panel upload-panel">
+
+            <div class="panel-title">
+
+                📂 데이터 업로드
+
+            </div>
+
+            <div class="upload-area">
+
+                <input
+                    type="file"
+                    id="excelFile"
+                    accept=".xlsx,.xls">
+
+                <button id="uploadBtn">
+
+                    업로드
+
+                </button>
+
+            </div>
+
+            <div class="upload-status">
+
+                업로드 대기중
+
+            </div>
+
+        </section>
+
+        <!-- 생산관리 -->
+
+        <section class="panel">
+
+            <div class="panel-title">
+
+                생산관리 현황
+
+            </div>
+
+            <div class="panel-row">
+
+                <div class="ai-panel">
+
+                    <canvas id="productionChart"></canvas>
+
+                </div>
+
+                <div class="ai-panel">
+
+                    <h3>AI 생산분석</h3>
+
+                    <br>
+
+                    생산계획 대비 실적 분석
+
+                    <br><br>
+
+                    • 생산 달성률 추이
+
+                    <br>
+
+                    • CAPA 부족 여부
+
+                    <br>
+
+                    • 생산 리스크 예측
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- 자재관리 -->
+
+        <section class="panel">
+
+            <div class="panel-title">
+
+                자재관리 현황
+
+            </div>
+
+            <div class="panel-row">
+
+                <div class="ai-panel">
+
+                    <table>
+
+                        <thead>
+
+                        <tr>
+                            <th>구분</th>
+                            <th>소요량</th>
+                            <th>재고</th>
+                            <th>입고예정</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        <tr>
+                            <td>외주자재</td>
+                            <td>520,000</td>
+                            <td>450,000</td>
+                            <td
