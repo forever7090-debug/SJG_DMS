@@ -1,11 +1,7 @@
-// ============================
-// SJG DMS Dashboard v1.2
-// ============================
-
 let productionChart = null;
 let logisticsChart = null;
 
-window.onload = function () {
+window.onload = () => {
 
     initUpload();
 
@@ -15,77 +11,61 @@ window.onload = function () {
 
 };
 
-// ============================
-// 업로드 이벤트
-// ============================
-
-function initUpload() {
+function initUpload(){
 
     const uploadBtn =
-        document.getElementById("uploadBtn");
-
-    if (!uploadBtn) return;
+        document.getElementById(
+            "uploadBtn"
+        );
 
     uploadBtn.addEventListener(
         "click",
-        function () {
+        () => {
 
             const fileInput =
-                document.getElementById("excelFile");
+                document.getElementById(
+                    "excelFile"
+                );
 
             const msg =
-                document.getElementById("uploadMessage");
+                document.getElementById(
+                    "uploadMessage"
+                );
 
-            if (
-                !fileInput ||
+            if(
                 fileInput.files.length === 0
-            ) {
+            ){
 
                 msg.innerHTML =
-                    "⚠ 업로드할 Excel 파일을 선택하세요.";
+                "⚠ 파일을 선택하세요.";
 
                 return;
             }
 
-            const file =
-                fileInput.files[0];
-
-            msg.innerHTML = `
-                ✅ 파일 선택 완료<br>
-                파일명 : ${file.name}<br>
-                상태 : 업로드 준비
-            `;
+            msg.innerHTML =
+            `✅ ${fileInput.files[0].name}
+            업로드 준비 완료`;
 
         }
     );
 
 }
 
-// ============================
-// 생산관리 차트
-// ============================
+function createProductionChart(){
 
-function createProductionChart() {
-
-    const canvas =
+    const ctx =
         document.getElementById(
             "productionChart"
         );
 
-    if (!canvas) return;
-
-    if (productionChart) {
-        productionChart.destroy();
-    }
-
     productionChart =
-        new Chart(canvas, {
+        new Chart(ctx,{
 
-            type: "bar",
+            type:"bar",
 
-            data: {
+            data:{
 
-                labels: [
+                labels:[
                     "W40",
                     "W41",
                     "W42",
@@ -94,15 +74,14 @@ function createProductionChart() {
                     "W45"
                 ],
 
-                datasets: [
+                datasets:[
 
                     {
-                        label: "생산계획",
+                        label:"생산계획",
 
-                        backgroundColor:
-                            "#214f8b",
+                        backgroundColor:"#234f88",
 
-                        data: [
+                        data:[
                             100,
                             110,
                             120,
@@ -113,13 +92,12 @@ function createProductionChart() {
                     },
 
                     {
-                        label: "생산실적",
+                        label:"생산실적",
 
-                        backgroundColor:
-                            "#e09a9a",
+                        backgroundColor:"#e6a0a0",
 
-                        data: [
-                            95,
+                        data:[
+                            98,
                             108,
                             118,
                             126,
@@ -132,51 +110,30 @@ function createProductionChart() {
 
             },
 
-            options: {
-
-                responsive: true,
-
-                maintainAspectRatio: false,
-
-                plugins: {
-
-                    legend: {
-                        position: "top"
-                    }
-
-                }
-
+            options:{
+                responsive:true,
+                maintainAspectRatio:false
             }
 
         });
 
 }
 
-// ============================
-// 물류관리 차트
-// ============================
+function createLogisticsChart(){
 
-function createLogisticsChart() {
-
-    const canvas =
+    const ctx =
         document.getElementById(
             "logisticsChart"
         );
 
-    if (!canvas) return;
-
-    if (logisticsChart) {
-        logisticsChart.destroy();
-    }
-
     logisticsChart =
-        new Chart(canvas, {
+        new Chart(ctx,{
 
-            type: "bar",
+            type:"bar",
 
-            data: {
+            data:{
 
-                labels: [
+                labels:[
                     "W40",
                     "W41",
                     "W42",
@@ -185,15 +142,14 @@ function createLogisticsChart() {
                     "W45"
                 ],
 
-                datasets: [
+                datasets:[
 
                     {
-                        label: "판매계획",
+                        label:"판매계획",
 
-                        backgroundColor:
-                            "#81B64C",
+                        backgroundColor:"#84b64c",
 
-                        data: [
+                        data:[
                             90,
                             100,
                             110,
@@ -204,15 +160,14 @@ function createLogisticsChart() {
                     },
 
                     {
-                        label: "판매실적",
+                        label:"판매실적",
 
-                        backgroundColor:
-                            "#3F72AF",
+                        backgroundColor:"#4975a7",
 
-                        data: [
+                        data:[
                             88,
-                            96,
-                            108,
+                            97,
+                            106,
                             118,
                             127,
                             135
@@ -223,77 +178,11 @@ function createLogisticsChart() {
 
             },
 
-            options: {
-
-                responsive: true,
-
-                maintainAspectRatio: false,
-
-                plugins: {
-
-                    legend: {
-                        position: "top"
-                    }
-
-                }
-
+            options:{
+                responsive:true,
+                maintainAspectRatio:false
             }
 
         });
 
 }
-
-// ============================
-// KPI 업데이트용
-// 향후 Excel 업로드 시 사용
-// ============================
-
-function updateKPI(data) {
-
-    document.getElementById(
-        "customerPlan"
-    ).innerText =
-        data.customerPlan.toLocaleString();
-
-    document.getElementById(
-        "productionPlan"
-    ).innerText =
-        data.productionPlan.toLocaleString();
-
-    document.getElementById(
-        "materialQty"
-    ).innerText =
-        data.materialQty.toLocaleString();
-
-    document.getElementById(
-        "shipmentPlan"
-    ).innerText =
-        data.shipmentPlan.toLocaleString();
-
-    document.getElementById(
-        "issueCount"
-    ).innerText =
-        data.issueCount + "건";
-
-}
-
-// ============================
-// Excel 연동용 예시
-// v1.3 에서 연결 예정
-// ============================
-
-const sampleData = {
-
-    customerPlan: 125430,
-
-    productionPlan: 118000,
-
-    materialQty: 991,
-
-    shipmentPlan: 115600,
-
-    issueCount: 5
-
-};
-
-// updateKPI(sampleData);
