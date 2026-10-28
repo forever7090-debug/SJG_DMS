@@ -1,3 +1,10 @@
+console.log(
+    document.getElementById("productionChart")
+);
+
+console.log(
+    document.getElementById("logisticsChart")
+);
 let productionChart;
 let logisticsChart;
 
