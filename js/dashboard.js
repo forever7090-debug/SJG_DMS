@@ -1,87 +1,299 @@
+// ============================
+// SJG DMS Dashboard v1.2
+// ============================
+
+let productionChart = null;
+let logisticsChart = null;
+
 window.onload = function () {
 
-    const ctx =
+    initUpload();
+
+    createProductionChart();
+
+    createLogisticsChart();
+
+};
+
+// ============================
+// 업로드 이벤트
+// ============================
+
+function initUpload() {
+
+    const uploadBtn =
+        document.getElementById("uploadBtn");
+
+    if (!uploadBtn) return;
+
+    uploadBtn.addEventListener(
+        "click",
+        function () {
+
+            const fileInput =
+                document.getElementById("excelFile");
+
+            const msg =
+                document.getElementById("uploadMessage");
+
+            if (
+                !fileInput ||
+                fileInput.files.length === 0
+            ) {
+
+                msg.innerHTML =
+                    "⚠ 업로드할 Excel 파일을 선택하세요.";
+
+                return;
+            }
+
+            const file =
+                fileInput.files[0];
+
+            msg.innerHTML = `
+                ✅ 파일 선택 완료<br>
+                파일명 : ${file.name}<br>
+                상태 : 업로드 준비
+            `;
+
+        }
+    );
+
+}
+
+// ============================
+// 생산관리 차트
+// ============================
+
+function createProductionChart() {
+
+    const canvas =
         document.getElementById(
             "productionChart"
         );
 
-    if (!ctx) return;
+    if (!canvas) return;
 
-    new Chart(ctx, {
+    if (productionChart) {
+        productionChart.destroy();
+    }
 
-        type: "bar",
+    productionChart =
+        new Chart(canvas, {
 
-        data: {
+            type: "bar",
 
-            labels: [
-                "W40",
-                "W41",
-                "W42",
-                "W43",
-                "W44",
-                "W45"
-            ],
+            data: {
 
-            datasets: [
+                labels: [
+                    "W40",
+                    "W41",
+                    "W42",
+                    "W43",
+                    "W44",
+                    "W45"
+                ],
 
-                {
-                    label: "계획",
+                datasets: [
 
-                    backgroundColor: "#204A87",
+                    {
+                        label: "생산계획",
 
-                    data: [
-                        100,
-                        110,
-                        120,
-                        130,
-                        140,
-                        150
-                    ]
-                },
+                        backgroundColor:
+                            "#214f8b",
 
-                {
-                    label: "실적",
+                        data: [
+                            100,
+                            110,
+                            120,
+                            130,
+                            140,
+                            150
+                        ]
+                    },
 
-                    backgroundColor: "#f0a2a2",
+                    {
+                        label: "생산실적",
 
-                    data: [
-                        95,
-                        108,
-                        118,
-                        126,
-                        138,
-                        145
-                    ]
+                        backgroundColor:
+                            "#e09a9a",
+
+                        data: [
+                            95,
+                            108,
+                            118,
+                            126,
+                            137,
+                            145
+                        ]
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+                        position: "top"
+                    }
+
                 }
 
-            ]
+            }
 
-        },
+        });
 
-        options: {
+}
 
-            responsive: true,
+// ============================
+// 물류관리 차트
+// ============================
 
-            maintainAspectRatio: false
+function createLogisticsChart() {
 
-        }
-
-    });
-
-    const uploadBtn =
+    const canvas =
         document.getElementById(
-            "uploadBtn"
+            "logisticsChart"
         );
 
-    uploadBtn.addEventListener(
-        "click",
-        function(){
+    if (!canvas) return;
 
-            document.getElementById(
-                "uploadMessage"
-            ).innerText =
-            "파일 업로드 UI 준비 완료";
+    if (logisticsChart) {
+        logisticsChart.destroy();
+    }
 
-        }
-    );
+    logisticsChart =
+        new Chart(canvas, {
+
+            type: "bar",
+
+            data: {
+
+                labels: [
+                    "W40",
+                    "W41",
+                    "W42",
+                    "W43",
+                    "W44",
+                    "W45"
+                ],
+
+                datasets: [
+
+                    {
+                        label: "판매계획",
+
+                        backgroundColor:
+                            "#81B64C",
+
+                        data: [
+                            90,
+                            100,
+                            110,
+                            120,
+                            130,
+                            140
+                        ]
+                    },
+
+                    {
+                        label: "판매실적",
+
+                        backgroundColor:
+                            "#3F72AF",
+
+                        data: [
+                            88,
+                            96,
+                            108,
+                            118,
+                            127,
+                            135
+                        ]
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+                        position: "top"
+                    }
+
+                }
+
+            }
+
+        });
+
+}
+
+// ============================
+// KPI 업데이트용
+// 향후 Excel 업로드 시 사용
+// ============================
+
+function updateKPI(data) {
+
+    document.getElementById(
+        "customerPlan"
+    ).innerText =
+        data.customerPlan.toLocaleString();
+
+    document.getElementById(
+        "productionPlan"
+    ).innerText =
+        data.productionPlan.toLocaleString();
+
+    document.getElementById(
+        "materialQty"
+    ).innerText =
+        data.materialQty.toLocaleString();
+
+    document.getElementById(
+        "shipmentPlan"
+    ).innerText =
+        data.shipmentPlan.toLocaleString();
+
+    document.getElementById(
+        "issueCount"
+    ).innerText =
+        data.issueCount + "건";
+
+}
+
+// ============================
+// Excel 연동용 예시
+// v1.3 에서 연결 예정
+// ============================
+
+const sampleData = {
+
+    customerPlan: 125430,
+
+    productionPlan: 118000,
+
+    materialQty: 991,
+
+    shipmentPlan: 115600,
+
+    issueCount: 5
+
 };
+
+// updateKPI(sampleData);
