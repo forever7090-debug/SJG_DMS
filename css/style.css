@@ -1,456 +1,248 @@
-/* =========================
-   SJG DMS STYLE
-========================= */
+/* ========================================
+   SJG DMS v1.1
+======================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    background: #dfe7f1;
-    font-family: "Segoe UI", sans-serif;
-    color: #222;
+body{
+    background:#dde5ef;
+    font-family:'Segoe UI',sans-serif;
+    color:#222;
 }
 
-/* =========================
-   Layout
-========================= */
-
-.container {
-    display: flex;
-    min-height: 100vh;
+.container{
+    display:flex;
+    min-height:100vh;
 }
 
-/* =========================
-   Sidebar
-========================= */
+/* ========================================
+   LEFT SIDEBAR
+======================================== */
 
-.sidebar {
-    width: 180px;
-    background: #002d67;
-    color: #fff;
-    border-radius: 0 30px 30px 0;
-    overflow: hidden;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+.sidebar{
+    width:180px;
+    background:#002d67;
+    color:#fff;
+    border-radius:0 30px 30px 0;
+    overflow:hidden;
+    box-shadow:2px 0 10px rgba(0,0,0,.15);
 }
 
-.logo {
-    height: 105px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 42px;
-    font-weight: 700;
-
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+.logo{
+    height:90px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:42px;
+    font-weight:700;
+    border-bottom:1px solid rgba(255,255,255,.15);
 }
 
-.menu {
-    list-style: none;
-    margin-top: 10px;
+.menu{
+    list-style:none;
 }
 
-.menu li {
-    padding: 18px 24px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 16px;
+.menu li{
+    padding:18px 20px;
+    cursor:pointer;
+    transition:.3s;
+    font-size:15px;
 }
 
-.menu li:hover {
-    background: rgba(255,255,255,0.12);
+.menu li:hover{
+    background:rgba(255,255,255,.12);
 }
 
-.menu li.active {
-    background: #5f82af;
+.menu li.active{
+    background:#6f8fb7;
 }
 
-/* =========================
-   Main Content
-========================= */
+/* ========================================
+   CONTENT
+======================================== */
 
-.content {
-    flex: 1;
-    padding: 18px;
+.content{
+    flex:1;
+    padding:18px;
 }
 
-/* =========================
-   Header
-========================= */
+/* ========================================
+   HEADER
+======================================== */
 
-.header {
-    background: #ced8e6;
-    border-radius: 35px;
-    padding: 14px 25px;
+.header{
+    background:#ccd5e2;
+    border-radius:35px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding:15px 20px;
 
-    margin-bottom: 15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:15px;
 }
 
-.filter-area {
-    display: flex;
-    gap: 15px;
-    align-items: center;
+.filter-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-.filter-area label {
-    font-weight: 600;
+.filter-area select{
+    width:150px;
+    height:36px;
+
+    border:none;
+
+    padding:5px 10px;
+
+    background:#fff;
 }
 
-.filter-area select {
-    width: 150px;
-    height: 38px;
-
-    border: none;
-    background: white;
-
-    padding: 5px 10px;
-
-    font-size: 16px;
+#lastUpdate{
+    font-weight:600;
 }
 
-#lastUpdate {
-    font-size: 14px;
-    font-weight: 600;
+/* ========================================
+   KPI
+======================================== */
+
+.kpi-row{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:15px;
+
+    margin-bottom:15px;
 }
 
-/* =========================
-   KPI CARD
-========================= */
+.kpi-card{
 
-.kpi-row {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
-    margin-bottom: 18px;
+    background:white;
+
+    border-radius:25px;
+
+    min-height:120px;
+
+    padding:15px;
+
+    box-shadow:
+    0 2px 6px rgba(0,0,0,.08);
 }
 
-.kpi-card {
-    background: white;
-    border-radius: 30px;
-    padding: 18px;
+.kpi-card h4{
 
-    min-height: 140px;
+    margin-bottom:10px;
+
+    font-size:18px;
+
+    color:#333;
 }
 
-.kpi-card h4 {
-    margin-bottom: 12px;
-    font-size: 18px;
+.kpi-card h2{
+
+    font-size:34px;
+
+    color:#111;
 }
 
-.kpi-card h2 {
-    font-size: 42px;
-    font-weight: 700;
-    color: #111;
+.issue{
+
+    background:#f6a1a1;
+
+    text-align:center;
 }
 
-.kpi-change {
-    color: red;
-    font-weight: bold;
-    margin-top: 5px;
+.issue h2{
+
+    color:red;
 }
 
-/* 특이사항 */
+.issue div{
 
-.issue {
-    background: #f59a9a;
-    text-align: center;
+    margin-top:10px;
+
+    font-weight:600;
 }
 
-.issue h4 {
-    font-size: 24px;
+/* ========================================
+   PANELS
+======================================== */
+
+.panel{
+
+    background:#ececec;
+
+    border-radius:30px;
+
+    padding:20px;
+
+    margin-bottom:15px;
 }
 
-.issue h2 {
-    color: red;
+.panel-title{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
 }
 
-/* =========================
-   Panel
-========================= */
+/* ========================================
+   GRID
+======================================== */
 
-.panel {
-    background: #e6e6e6;
+.panel-row{
 
-    border-radius: 35px;
+    display:grid;
 
-    padding: 20px;
+    grid-template-columns:
+    60% 40%;
 
-    margin-bottom: 15px;
+    gap:20px;
 }
 
-.panel-title {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 15px;
+/* ========================================
+   AI PANEL
+======================================== */
+
+.ai-panel{
+
+    background:white;
+
+    min-height:250px;
+
+    border-left:6px solid #002d67;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    line-height:1.8;
+
+    box-shadow:
+    0 2px 6px rgba(0,0,0,.08);
 }
 
-/* =========================
-   2 Column Layout
-========================= */
-
-.panel-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.panel-row-3 {
-    display: grid;
-    grid-template-columns: 35% 20% 45%;
-    gap: 20px;
-}
-
-/* =========================
-   Chart Box
-========================= */
-
-.chart-box {
-    background: transparent;
-    padding: 10px;
-}
-
-.chart-box canvas {
-    width: 100%;
-}
-
-/* =========================
-   Gauge
-========================= */
-
-.gauge-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.gauge-circle {
-    width: 180px;
-    height: 180px;
-
-    border-radius: 50%;
-
-    background:
-      conic-gradient(
-        #f18f8f 0deg 331deg,
-        #e5e5e5 331deg 360deg
-      );
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.gauge-inner {
-    width: 130px;
-    height: 130px;
-    background: white;
-
-    border-radius: 50%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 48px;
-    font-weight: bold;
-
-    color: #f44336;
-}
-
-/* =========================
-   Logistics Green Gauge
-========================= */
-
-.gauge-green .gauge-circle {
-    background:
-      conic-gradient(
-        #97b84b 0deg 342deg,
-        #e5e5e5 342deg 360deg
-      );
-}
-
-.gauge-green .gauge-inner {
-    color: #97b84b;
-}
-
-/* =========================
-   Table
-========================= */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th {
-    background: #c8c8c8;
-    font-weight: 700;
-}
-
-th,
-td {
-    border: 1px solid #9d9d9d;
-    padding: 8px;
-    text-align: center;
-}
-
-td.red {
-    color: red;
-    font-weight: bold;
-}
-
-/* =========================
-   Analysis Box
-========================= */
-
-#analysisResult {
-    line-height: 1.8;
-    font-size: 16px;
-}
-
-.warning {
-    color: orange;
-    font-weight: bold;
-}
-
-.danger {
-    color: red;
-    font-weight: bold;
-}
-
-.good {
-    color: green;
-    font-weight: bold;
-}
-
-/* =========================
-   Modal
-========================= */
-
-.modal {
-    display: none;
-
-    position: fixed;
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: rgba(0,0,0,0.6);
-
-    z-index: 999;
-}
-
-.modal-body {
-
-    width: 550px;
-
-    background: white;
-
-    margin: 80px auto;
-
-    padding: 30px;
-
-    border-radius: 20px;
-}
-
-.modal-body h2 {
-    margin-bottom: 20px;
-}
-
-.modal-body input {
-
-    width: 100%;
-
-    margin-bottom: 12px;
-
-    padding: 12px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 8px;
-}
-
-.modal-body button {
-
-    width: 100%;
-
-    padding: 14px;
-
-    background: #002d67;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    font-size: 16px;
-}
-
-.modal-body button:hover {
-    background: #1f4c8c;
-}
-
-/* =========================
-   Responsive
-========================= */
-
-@media(max-width:1200px){
-
-    .kpi-row{
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .panel-row,
-    .panel-row-3{
-        grid-template-columns: 1fr;
-    }
-
-    .sidebar{
-        width: 140px;
-    }
-
-}
-
-@media(max-width:768px){
-
-    .container{
-        flex-direction: column;
-    }
-
-    .sidebar{
-        width: 100%;
-        border-radius: 0;
-    }
-
-    .header{
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .kpi-row{
-        grid-template-columns: 1fr;
-    }
-
-}
-.upload-panel {
+/* ========================================
+   UPLOAD
+======================================== */
+
+.upload-panel{
 
     background:#f8fbff;
-
 }
 
-.upload-area {
+.upload-area{
 
     display:flex;
 
@@ -458,6 +250,16 @@ td.red {
 
     align-items:center;
 
+    margin-bottom:15px;
+}
+
+.upload-area input{
+
+    flex:1;
+
+    padding:10px;
+
+    border:1px solid #ccc;
 }
 
 .upload-area button{
@@ -473,33 +275,187 @@ td.red {
     border-radius:10px;
 
     cursor:pointer;
+}
 
+.upload-area button:hover{
+
+    background:#194989;
 }
 
 .upload-status{
 
-    margin-top:20px;
+    background:white;
 
+    padding:15px;
+
+    border-radius:10px;
 }
 
-.ai-panel{
+/* ========================================
+   TABLE
+======================================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#d5d5d5;
+}
+
+th,
+td{
+
+    border:1px solid #aaa;
+
+    padding:8px;
+
+    text-align:center;
+}
+
+/* ========================================
+   CHART
+======================================== */
+
+canvas{
+
+    width:100%!important;
+
+    height:280px!important;
+}
+
+/* ========================================
+   STATUS COLOR
+======================================== */
+
+.good{
+
+    color:green;
+    font-weight:bold;
+}
+
+.warning{
+
+    color:orange;
+    font-weight:bold;
+}
+
+.danger{
+
+    color:red;
+    font-weight:bold;
+}
+
+/* ========================================
+   MODAL
+======================================== */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.5);
+
+    z-index:999;
+}
+
+.modal-body{
+
+    width:550px;
+
+    margin:80px auto;
 
     background:white;
 
-    border-left:6px solid #002d67;
+    padding:25px;
 
-    padding:20px;
+    border-radius:20px;
+}
 
-    min-height:220px;
+.modal-body input{
 
-    line-height:1.8;
+    width:100%;
 
-    font-size:15px;
+    padding:12px;
 
+    margin-bottom:10px;
+}
+
+.modal-body button{
+
+    width:100%;
+
+    padding:12px;
+
+    background:#002d67;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
 }
 
 .hidden-page{
 
     display:none;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media(max-width:1200px){
+
+    .kpi-row{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .panel-row{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .container{
+
+        flex-direction:column;
+    }
+
+    .sidebar{
+
+        width:100%;
+
+        border-radius:0;
+    }
+
+    .header{
+
+        flex-direction:column;
+
+        gap:10px;
+    }
+
+    .kpi-row{
+
+        grid-template-columns:1fr;
+    }
 
 }
