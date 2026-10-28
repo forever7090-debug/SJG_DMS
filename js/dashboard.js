@@ -173,3 +173,25 @@ function drawProductionChart() {
     });
 
 }
+const uploadBtn =
+document.getElementById(
+    "uploadBtn"
+);
+
+if(uploadBtn){
+
+uploadBtn.addEventListener(
+"click",
+()=>{
+
+document.getElementById(
+"uploadMessage"
+).innerHTML =
+
+"✅ 파일 선택 완료<br><br>"
++
+"v1.2에서 Excel Parsing 연결 예정";
+
+});
+
+}
