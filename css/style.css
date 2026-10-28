@@ -202,12 +202,8 @@ body{
 ======================================== */
 
 .panel-row{
-
     display:grid;
-
-    grid-template-columns:
-    60% 40%;
-
+    grid-template-columns:1fr 1fr;
     gap:20px;
 }
 
