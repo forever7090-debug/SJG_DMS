@@ -2,24 +2,25 @@
 <html lang="ko">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SJG DMS</title>
 
-<title>SJG DMS</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
 
-<link rel="stylesheet" href="./css/style.css">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
 <div class="container">
 
-    <!-- 좌측 메뉴 -->
-
+    <!-- =========================
+         LEFT MENU
+    ========================== -->
     <aside class="sidebar">
 
         <div class="logo">
@@ -27,40 +28,27 @@
         </div>
 
         <ul class="menu">
-
             <li class="active">통합 모니터링</li>
-
-            <li id="menuUpload">
-                데이터 업로드
-            </li>
-
+            <li id="menuUpload">데이터 업로드</li>
             <li>생산관리</li>
-
             <li>자재관리</li>
-
             <li>물류관리</li>
-
             <li>고객사 현황</li>
-
-            <li id="menuAi">
-                AI 분석센터
-            </li>
-
+            <li id="menuAi">AI 분석센터</li>
             <li>특이사항</li>
-
             <li>보고서</li>
-
             <li>설정</li>
-
         </ul>
 
     </aside>
 
-    <!-- 본문 -->
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
 
     <main class="content">
 
-        <!-- Header -->
+        <!-- HEADER -->
 
         <div class="header">
 
@@ -75,286 +63,11 @@
             </div>
 
             <div id="lastUpdate">
-
-                최종 업데이트 :
-                2026.10.31 08:00
-
+                최종 업데이트 : 2026.10.31 08:00
             </div>
 
         </div>
 
         <!-- KPI -->
 
-        <div class="kpi-row">
-
-            <div class="kpi-card">
-
-                <h4>고객사 계획수량</h4>
-
-                <h2 id="customerPlan">
-                    125,430 EA
-                </h2>
-
-            </div>
-
-            <div class="kpi-card">
-
-                <h4>생산 계획수량</h4>
-
-                <h2 id="productionPlan">
-                    118,000 EA
-                </h2>
-
-            </div>
-
-            <div class="kpi-card">
-
-                <h4>자재 소요량</h4>
-
-                <h2 id="materialQty">
-                    991 품목
-                </h2>
-
-            </div>
-
-            <div class="kpi-card">
-
-                <h4>출하 계획수량</h4>
-
-                <h2 id="shipmentPlan">
-                    115,600 EA
-                </h2>
-
-            </div>
-
-            <div class="kpi-card issue">
-
-                <h4>특이사항</h4>
-
-                <h2 id="issueCount">
-
-                    5건
-
-                </h2>
-
-                <div>
-
-                    생산2
-                    자재1
-                    물류2
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- 데이터 업로드 -->
-
-        <section class="panel upload-panel">
-
-            <div class="panel-title">
-
-                📂 데이터 업로드
-
-            </div>
-
-            <div class="upload-area">
-
-                <input
-                    type="file"
-                    id="excelFile"
-                    accept=".xlsx,.xls">
-
-                <button id="uploadBtn">
-
-                    업로드
-
-                </button>
-
-            </div>
-
-            <div class="upload-status">
-
-                <strong>업로드 상태</strong>
-
-                <p id="uploadMessage">
-
-                    업로드 대기중
-
-                </p>
-
-            </div>
-
-        </section>
-
-        <!-- 생산관리 -->
-
-        <section class="panel">
-
-            <div class="panel-row">
-
-                <div>
-
-                    <div class="panel-title">
-
-                        생산관리 현황
-
-                    </div>
-
-                    <canvas id="productionChart"></canvas>
-
-                </div>
-
-                <div>
-
-                    <div class="panel-title">
-
-                        AI 생산분석
-
-                    </div>
-
-                    <div class="ai-panel">
-
-                        생산 데이터 업로드 후
-
-                        생산달성률과 주요 리스크가
-                        자동 분석됩니다.
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- 자재관리 -->
-
-        <section class="panel">
-
-            <div class="panel-row">
-
-                <div>
-
-                    <div class="panel-title">
-
-                        자재관리 현황
-
-                    </div>
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-
-                                <th>구분</th>
-
-                                <th>소요량</th>
-
-                                <th>재고</th>
-
-                                <th>입고예정</th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            <tr>
-
-                                <td>외주자재</td>
-
-                                <td>520,000</td>
-
-                                <td>450,000</td>
-
-                                <td>50,000</td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-                <div>
-
-                    <div class="panel-title">
-
-                        AI 자재분석
-
-                    </div>
-
-                    <div class="ai-panel">
-
-                        자재 부족,
-                        과잉재고,
-                        입고지연 등을
-
-                        자동 분석합니다.
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- 물류관리 -->
-
-        <section class="panel">
-
-            <div class="panel-row">
-
-                <div>
-
-                    <div class="panel-title">
-
-                        물류관리 현황
-
-                    </div>
-
-                    <canvas id="logisticsChart"></canvas>
-
-                </div>
-
-                <div>
-
-                    <div class="panel-title">
-
-                        AI 물류분석
-
-                    </div>
-
-                    <div class="ai-panel">
-
-                        출하실적,
-
-                        납기준수율,
-
-                        물류리스크가
-
-                        표시됩니다.
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
-
-<script src="./js/dashboard.js"></script>
-
-</body>
-
-</html>
+      
