@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SJG DMS</title>
 
-<title>SJG DMS</title>
+    <link rel="stylesheet" href="./css/style.css">
 
-<link rel="stylesheet" href="./css/style.css">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -17,7 +17,9 @@
 
     <aside class="sidebar">
 
-        <div class="logo">SJG</div>
+        <div class="logo">
+            SJG
+        </div>
 
         <ul class="menu">
             <li class="active">통합 모니터링</li>
@@ -27,7 +29,6 @@
             <li>물류관리</li>
             <li>고객사 현황</li>
             <li>AI 분석센터</li>
-            <li>특이사항</li>
             <li>보고서</li>
             <li>설정</li>
         </ul>
@@ -39,7 +40,7 @@
         <div class="header">
 
             <div>
-                기준주차 :
+                기준주차
                 <select>
                     <option>2026-W45</option>
                 </select>
@@ -128,10 +129,7 @@
 
             <div class="upload-box">
 
-                <input
-                type="file"
-                id="excelFile"
-                accept=".xlsx,.xls">
+                <input type="file" id="excelFile" accept=".xlsx,.xls">
 
                 <button id="uploadBtn">
                     업로드
@@ -143,9 +141,7 @@
                 업로드 대기중
             </div>
 
-        </section>
-
-        <!-- 생산 -->
+       -->
 
         <section class="panel">
 
@@ -163,21 +159,17 @@
 
                     <h3>AI 생산분석</h3>
 
-                    <br>
+                    <p>
+                        생산달성률 : 97.1%
+                    </p>
 
-                    생산달성률 : 97.1%
+                    <p>
+                        전주대비 +2.1%
+                    </p>
 
-                    <br><br>
-
-                    전주대비 +2.1%
-
-                    <br><br>
-
-                    CAPA 부족 없음
-
-                    <br><br>
-
-                    상태 : 정상
+                    <p>
+                        CAPA 부족 없음
+                    </p>
 
                 </div>
 
@@ -185,7 +177,7 @@
 
         </section>
 
-        <!-- 자재 -->
+        <!-- 자재관리 -->
 
         <section class="panel">
 
@@ -209,7 +201,6 @@
                         </thead>
 
                         <tbody>
-
                         <tr>
                             <td>외주자재</td>
                             <td>520,000</td>
@@ -223,7 +214,6 @@
                             <td>100,000</td>
                             <td>130,000</td>
                         </tr>
-
                         </tbody>
 
                     </table>
@@ -234,19 +224,9 @@
 
                     <h3>AI 자재분석</h3>
 
-                    <br>
-
-                    부족 예상 품목 : 3건
-
-                    <br><br>
-
-                    입고지연 : 1건
-
-                    <br><br>
-
-                    예상 부족량 :
-
-                    70,000 EA
+                    <p>부족 예상 품목 : 3건</p>
+                    <p>입고지연 : 1건</p>
+                    <p>예상 부족량 : 70,000 EA</p>
 
                 </div>
 
@@ -254,7 +234,7 @@
 
         </section>
 
-        <!-- 물류 -->
+        <!-- 물류관리 -->
 
         <section class="panel">
 
@@ -272,17 +252,9 @@
 
                     <h3>AI 물류분석</h3>
 
-                    <br>
-
-                    판매달성률 : 96.4%
-
-                    <br><br>
-
-                    납기준수율 : 91%
-
-                    <br><br>
-
-                    위험도 : 주의
+                    <p>판매달성률 : 96.4%</p>
+                    <p>납기준수율 : 91%</p>
+                    <p>위험도 : 주의</p>
 
                 </div>
 
@@ -294,7 +266,7 @@
 
 </div>
 
-<script src="./js/dashboard.js"></script>
+./js/dashboard.jsscript>
 
 </body>
 </html>
