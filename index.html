@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SJG DMS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="./css/style.css">
+<title>SJG DMS</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="./css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -56,28 +57,63 @@
 
             <div class="kpi-card">
                 <h4>고객사 계획수량</h4>
-                <h2>125,430</h2>
+                <h2 id="customerPlan">125,430</h2>
+
+                <div class="mini-breakdown">
+                    G90 : 45,000<br>
+                    CN8 : 35,000<br>
+                    PE : 25,000<br>
+                    기타 : 20,430
+                </div>
             </div>
 
             <div class="kpi-card">
                 <h4>생산 계획수량</h4>
-                <h2>118,000</h2>
+                <h2 id="productionPlan">118,000</h2>
+
+                <div class="mini-breakdown">
+                    G90 : 40,000<br>
+                    CN8 : 35,000<br>
+                    PE : 25,000<br>
+                    기타 : 18,000
+                </div>
             </div>
 
             <div class="kpi-card">
                 <h4>자재 소요량</h4>
-                <h2>991</h2>
+                <h2 id="materialQty">991</h2>
+
+                <div class="mini-breakdown">
+                    원재료 : 520<br>
+                    부품 : 320<br>
+                    부자재 : 151
+                </div>
             </div>
 
             <div class="kpi-card">
                 <h4>출하 계획수량</h4>
-                <h2>115,600</h2>
+                <h2 id="shipmentPlan">115,600</h2>
+
+                <div class="mini-breakdown">
+                    내수 : 65%<br>
+                    북미 : 20%<br>
+                    유럽 : 10%<br>
+                    기타 : 5%
+                </div>
             </div>
 
-            <div class="kpi-card issue">
-                <h4>특이사항</h4>
-                <h2>5건</h2>
-                <div>생산2 · 자재1 · 물류2</div>
+            <div class="kpi-card ai-summary">
+
+                <h4>AI 종합결론</h4>
+
+                <h2>🟠 주의</h2>
+
+                <div class="ai-result">
+                    생산달성률 저하<br>
+                    외주자재 부족 예상<br>
+                    납기위험 1건
+                </div>
+
             </div>
 
         </div>
@@ -90,15 +126,22 @@
                 데이터 업로드
             </div>
 
-            <input type="file" id="excelFile">
+            <div class="upload-box">
 
-            <button id="uploadBtn">
-                업로드
-            </button>
+                <input
+                type="file"
+                id="excelFile"
+                accept=".xlsx,.xls">
 
-            <p id="uploadMessage">
+                <button id="uploadBtn">
+                    업로드
+                </button>
+
+            </div>
+
+            <div id="uploadMessage">
                 업로드 대기중
-            </p>
+            </div>
 
         </section>
 
@@ -120,10 +163,21 @@
 
                     <h3>AI 생산분석</h3>
 
-                    <p>
-                        생산실적, 달성률, CAPA 부족 리스크가
-                        표시될 영역입니다.
-                    </p>
+                    <br>
+
+                    생산달성률 : 97.1%
+
+                    <br><br>
+
+                    전주대비 +2.1%
+
+                    <br><br>
+
+                    CAPA 부족 없음
+
+                    <br><br>
+
+                    상태 : 정상
 
                 </div>
 
@@ -145,17 +199,32 @@
 
                     <table>
 
+                        <thead>
                         <tr>
                             <th>구분</th>
                             <th>소요량</th>
                             <th>재고</th>
+                            <th>입고예정</th>
                         </tr>
+                        </thead>
+
+                        <tbody>
 
                         <tr>
                             <td>외주자재</td>
                             <td>520,000</td>
                             <td>450,000</td>
+                            <td>50,000</td>
                         </tr>
+
+                        <tr>
+                            <td>촉매자재</td>
+                            <td>220,000</td>
+                            <td>100,000</td>
+                            <td>130,000</td>
+                        </tr>
+
+                        </tbody>
 
                     </table>
 
@@ -165,9 +234,19 @@
 
                     <h3>AI 자재분석</h3>
 
-                    <p>
-                        부족 자재 및 공급망 위험 분석 영역
-                    </p>
+                    <br>
+
+                    부족 예상 품목 : 3건
+
+                    <br><br>
+
+                    입고지연 : 1건
+
+                    <br><br>
+
+                    예상 부족량 :
+
+                    70,000 EA
 
                 </div>
 
@@ -186,35 +265,24 @@
             <div class="panel-row">
 
                 <div class="panel-box">
-
-                    <div class="logistics-kpi">
-
-                        <div class="mini-card">
-                            <h4>출하율</h4>
-                            <h2>95%</h2>
-                        </div>
-
-                        <div class="mini-card">
-                            <h4>납기준수율</h4>
-                            <h2>91%</h2>
-                        </div>
-
-                        <div class="mini-card">
-                            <h4>긴급출하</h4>
-                            <h2>2건</h2>
-                        </div>
-
-                    </div>
-
+                    <canvas id="logisticsChart"></canvas>
                 </div>
 
                 <div class="panel-box">
 
                     <h3>AI 물류분석</h3>
 
-                    <p>
-                        출하 및 납기 리스크 분석 영역
-                    </p>
+                    <br>
+
+                    판매달성률 : 96.4%
+
+                    <br><br>
+
+                    납기준수율 : 91%
+
+                    <br><br>
+
+                    위험도 : 주의
 
                 </div>
 
