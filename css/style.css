@@ -444,3 +444,62 @@ td.red {
     }
 
 }
+.upload-panel {
+
+    background:#f8fbff;
+
+}
+
+.upload-area {
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+}
+
+.upload-area button{
+
+    background:#002d67;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.upload-status{
+
+    margin-top:20px;
+
+}
+
+.ai-panel{
+
+    background:white;
+
+    border-left:6px solid #002d67;
+
+    padding:20px;
+
+    min-height:220px;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+}
+
+.hidden-page{
+
+    display:none;
+
+}
