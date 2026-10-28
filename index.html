@@ -1,344 +1,159 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>통합 데이터 모니터링</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SJG DMS</title>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-}
-
-body{
-background:#e8eef5;
-}
-
-.container{
-display:flex;
-height:100vh;
-}
-
-.sidebar{
-width:240px;
-background:#012f6b;
-color:white;
-padding:20px;
-}
-
-.logo{
-font-size:32px;
-font-weight:bold;
-text-align:center;
-margin-bottom:30px;
-}
-
-.menu div{
-padding:15px;
-margin:5px 0;
-cursor:pointer;
-border-radius:8px;
-}
-
-.menu div:hover{
-background:#2f5d99;
-}
-
-.main{
-flex:1;
-padding:20px;
-overflow:auto;
-}
-
-.header{
-background:white;
-padding:15px;
-border-radius:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:15px;
-}
-
-.filters{
-display:flex;
-gap:10px;
-}
-
-select{
-padding:8px;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:15px;
-margin-bottom:15px;
-}
-
-.card{
-background:white;
-padding:15px;
-border-radius:15px;
-}
-
-.card h4{
-color:#777;
-}
-
-.value{
-font-size:32px;
-font-weight:bold;
-margin-top:10px;
-}
-
-.red{
-color:red;
-}
-
-.danger{
-background:#f8b4b4;
-}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-bottom:15px;
-}
-
-.panel{
-background:white;
-padding:20px;
-border-radius:15px;
-}
-
-table{
-width:100%;
-margin-top:10px;
-border-collapse:collapse;
-}
-
-th,td{
-border:1px solid #ddd;
-padding:8px;
-text-align:center;
-}
-
-th{
-background:#f3f3f3;
-}
-
-.gauge{
-display:flex;
-justify-content:center;
-align-items:center;
-height:250px;
-font-size:60px;
-color:red;
-font-weight:bold;
-}
-
-@media(max-width:1200px){
-.cards{
-grid-template-columns:repeat(2,1fr);
-}
-.grid{
-grid-template-columns:1fr;
-}
-}
-</style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
 <div class="container">
 
-<div class="sidebar">
-<div class="logo">SDG</div>
+    <aside class="sidebar">
 
-<div class="menu">
-<div>통합 모니터링</div>
-<div>생산관리</div>
-<div>자재관리</div>
-<div>물류관리</div>
-<div>고객사 현황</div>
-<div>특이사항</div>
-<div>보고서</div>
-<div>설정</div>
-</div>
-</div>
+        <div class="logo">
+            SJG
+        </div>
 
-<div class="main">
+        <ul class="menu">
+            <li class="active">통합 모니터링</li>
+            <li>생산관리</li>
+            <li>자재관리</li>
+            <li>물류관리</li>
+            <li>고객사 현황</li>
+            <li id="openInput">데이터 입력</li>
+            <li>AI 분석결과</li>
+            <li>보고서</li>
+            <li>설정</li>
+        </ul>
 
-<div class="header">
-<h2>통합 데이터 모니터링</h2>
-<div>최종 업데이트 : 2026.10.31 08:00</div>
-</div>
+    </aside>
 
-<div class="filters">
-<select>
-<option>2026-10-4W</option>
-</select>
+    <main class="content">
 
-<select>
-<option>전체 고객사</option>
-</select>
+        <div class="header">
 
-<select>
-<option>전체 품목</option>
-</select>
-</div>
+            <div class="filter-area">
+                <label>기준주차</label>
 
-<br>
+                <select id="weekSelect">
+                    <option>2026-W45</option>
+                </select>
+            </div>
 
-<div class="cards">
+            <div id="lastUpdate">
+                최종 업데이트
+            </div>
 
-<div class="card">
-<h4>고객사 계획수량</h4>
-<div class="value">125,430</div>
-<div class="red">▲12%</div>
-</div>
+        </div>
 
-<div class="card">
-<h4>생산 계획수량</h4>
-<div class="value">118,000</div>
-<div class="red">▲9%</div>
-</div>
+        <div class="kpi-row">
 
-<div class="card">
-<h4>자재 소요량</h4>
-<div class="value">991</div>
-</div>
+            <div class="kpi-card">
+                <h4>고객사 계획수량</h4>
+                <h2 id="customerPlan">0</h2>
+            </div>
 
-<div class="card">
-<h4>출하계획수량</h4>
-<div class="value">115,600</div>
-<div class="red">▲10%</div>
-</div>
+            <div class="kpi-card">
+                <h4>생산 계획수량</h4>
+                <h2 id="productionPlan">0</h2>
+            </div>
 
-<div class="card danger">
-<h4>특이사항</h4>
-<div class="value">5건</div>
-<div>생산2 / 자재1 / 물류2</div>
-</div>
+            <div class="kpi-card">
+                <h4>자재 소요량</h4>
+                <h2 id="materialQty">0</h2>
+            </div>
 
-</div>
+            <div class="kpi-card">
+                <h4>출하 계획수량</h4>
+                <h2 id="shipmentPlan">0</h2>
+            </div>
 
-<div class="grid">
+            <div class="kpi-card issue">
+                <h4>특이사항</h4>
+                <h2 id="issueCount">0건</h2>
+            </div>
 
-<div class="panel">
-<h3>생산관리 현황</h3>
-<canvas id="productionChart"></canvas>
-</div>
+        </div>
 
-<div class="panel">
-<h3>생산부하율</h3>
-<div class="gauge">92%</div>
-</div>
+        <section class="panel">
+            <div class="panel-title">
+                생산관리 현황
+            </div>
 
-</div>
+            <canvas id="productionChart"></canvas>
+        </section>
 
-<div class="grid">
+        <section class="panel">
 
-<div class="panel">
-<h3>자재관리 현황</h3>
+            <div class="panel-title">
+                자재관리 현황
+            </div>
 
-<table>
-<tr>
-<th>구분</th>
-<th>소요량</th>
-<th>재고</th>
-<th>입고예정</th>
-</tr>
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>소요량</th>
+                        <th>재고</th>
+                        <th>입고예정</th>
+                    </tr>
+                </thead>
 
-<tr>
-<td>외주자재</td>
-<td>520,000</td>
-<td>450,000</td>
-<td>50,000</td>
-</tr>
+                <tbody id="materialTable"></tbody>
+            </table>
 
-<tr>
-<td>촉매자재</td>
-<td>220,000</td>
-<td>100,000</td>
-<td>130,000</td>
-</tr>
+        </section>
 
-</table>
+        <section class="panel">
+
+            <div class="panel-title">
+                AI 종합 분석
+            </div>
+
+            <div id="analysisResult"></div>
+
+        </section>
+
+    </main>
 
 </div>
 
-<div class="panel">
+<div id="inputModal" class="modal">
 
-<h3>업체별 특이사항 TOP3</h3>
+    <div class="modal-body">
 
-<table>
-<tr>
-<th>업체</th>
-<th>품번</th>
-<th>이슈</th>
-</tr>
+        <h2>주간 데이터 입력</h2>
 
-<tr>
-<td>청우</td>
-<td>SJLX331010-S</td>
-<td>납기지연</td>
-</tr>
+        <input id="week" placeholder="2026-W45">
 
-<tr>
-<td>에스케이지</td>
-<td>SJCNH51010</td>
-<td>수급불안정</td>
-</tr>
+        <input id="customer" placeholder="고객사 계획">
 
-<tr>
-<td>프레시아</td>
-<td>28950-2MAA0</td>
-<td>재고과다</td>
-</tr>
+        <input id="production_plan" placeholder="생산 계획">
 
-</table>
+        <input id="production_actual" placeholder="생산 실적">
+
+        <input id="shipment_plan" placeholder="출하 계획">
+
+        <input id="shipment_actual" placeholder="출하 실적">
+
+        <input id="material_required" placeholder="자재 소요량">
+
+        <button onclick="saveData()">저장</button>
+
+    </div>
 
 </div>
 
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-new Chart(
-document.getElementById('productionChart'),
-{
-type:'bar',
-data:{
-labels:['W40','W41','W42','W43','W44','W45'],
-datasets:[
-{
-label:'계획',
-data:[100,120,110,140,150,145],
-backgroundColor:'#335c99'
-},
-{
-label:'실적',
-data:[98,118,109,136,149,150],
-backgroundColor:'#f09999'
-}
-]
-}
-}
-);
-
-</script>
+<script src="js/storage.js"></script>
+<script src="js/analysis.js"></script>
+<script src="js/dashboard.js"></script>
 
 </body>
 </html>
